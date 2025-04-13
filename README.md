@@ -11,7 +11,7 @@
 
 ## 2. 컨테이너 구성
 
-| 컨테이너 | 역할       | 서비스       | IP (DMZ)     |
+| 서버이름 | 역할       | 서비스       | IP (DMZ)     |
 |----------|------------|--------------|--------------|
 | cent1    | 웹 서버    | nginx        | 172.18.1.91  |
 | cent2    | DB 서버    | MariaDB 10.4 | 172.18.1.92  |
@@ -35,13 +35,16 @@
 ### 4-1. 저장소 클론
 
 ```bash
-git clone https://github.com/bashbomb/VWS-docker-environment.git
+git clone https://github.com/bashbomb/vws-docker-environment.git
 ```
 
 ### 4-2. 컨테이너 이미지 빌드
 
 ```bash
-cd VWS-docker-environment
+# 저장소를 복사한 디렉터리로 이동 
+cd vws-docker-environment
+
+# 컨테이너 빌드
 docker-compose build
 ```
 
@@ -51,7 +54,38 @@ docker-compose build
 docker-compose up -d
 ```
 
-### 4-4. 로컬 환경에서 컨테이너에 접속
+컨테이너 별로 실행을 하려면 -d 뒤에 서버이름을 붙여주세요.
+
+```bash
+# cent1 컨테이너만 실행할 경우
+docker-compose up -d cent1
+```
+
+### 4-4. 컨테이너 실행 확인
+
+컨테이너가 정상적으로 기동되었는지 확인하려면 다음 명령어를 사용하세요:
+
+```bash
+docker ps -a
+```
+
+정상적으로 실행되면 아래와 같이 cent1, cent2, cent3 컨테이너가 모두 Up 상태로 표시됩니다.
+
+```bash
+CONTAINER ID   IMAGE                 COMMAND       ...   STATUS          NAMES
+abc123456789   vws-cent1:latest     "/init.sh"    ...   Up xx minutes   cent1
+def987654321   vws-cent2:latest     "/init.sh"    ...   Up xx minutes   cent2
+ghi456789abc   vws-cent3:latest     "/init.sh"    ...   Up xx minutes   cent3
+```
+
+❗ 만약 STATUS가 Up이 아니라 Exited로 보이면 해당 컨테이너의 이름을 사용해 로그를 확인해보세요:
+
+```bash
+# cent1의 STATUS가 Exited일 경우
+docker logs cent1
+```
+
+### 4-5. 로컬 환경에서 컨테이너에 접속
 
 ```bash
 # 웹 서버에 접속
@@ -62,7 +96,7 @@ docker exec -it cent2 bash
 docker exec -it cent3 bash
 ```
 
-### 4-5. 컨테이너 내부에서 다른 서버에 접속
+### 4-6. 컨테이너 내부에서 다른 서버에 접속
 
 각 컨테이너에는 `/root/.ssh/config`와 키 파일이 미리 설정되어 있어
 컨테이너 내부에서 이름(`cent1`, `cent2`, `cent3`)만으로 SSH 접속이 가능합니다.

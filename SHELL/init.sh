@@ -9,12 +9,18 @@ MDB_CONF="/etc/my.cnf.d/server.cnf"
 NFS_EXPORTS="/etc/exports"
 
 # /etc/hosts 등록
-echo "172.18.0.91 cent1" >> /etc/hosts
-echo "172.18.0.92 cent2" >> /etc/hosts
-echo "172.18.0.93 cent3" >> /etc/hosts
+echo "hosts에 각 서버를 등록합니다."
+cat << EOF > /etc/hosts
+127.0.0.1   localhost
+::1         localhost
+10.18.1.91  cent1
+10.18.1.92  cent2
+10.18.1.93  cent3
+EOF
 
 # fstab 등록 (NFS mount용)
-echo "172.18.1.93:/nfs   /mnt   nfs   nfsvers=3,tcp,nolock,noauto  0  0" >> /etc/fstab
+echo "fstab에 nfs 정보를 등록합니다."
+echo "10.18.1.93:/nfs   /mnt   nfs   nfsvers=3,tcp,nolock,noauto  0  0" >> /etc/fstab
 
 # .bashrc 환경 설정
 {
@@ -70,10 +76,6 @@ case ${HOST} in
     # nginx 시작
     echo "[cent1] nginx 실행"
     /usr/sbin/nginx
-  
-    # NFS 마운트 정보 fstab에 등록
-    echo "[cent1] fstab에 NFS 마운트 경로 등록"
-    echo "172.18.1.93:/nfs   /mnt   nfs   nfsvers=3,tcp,nolock,noauto  0  0" >> /etc/fstab
   
     ;;
 

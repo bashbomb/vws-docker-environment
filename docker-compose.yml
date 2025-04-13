@@ -6,15 +6,18 @@ services:
     container_name: cent1
     hostname: cent1
     networks:
-      vws_net:
+      dmz_net:
         ipv4_address: 172.18.1.91
-    volumes:
-      - ./SRC:/labdata
+      local_net:
+        ipv4_address: 10.18.1.91
     ports:
       - "80:80"
+    volumes:
+      - ./SRC:/labdata
     privileged: true
     init: true
     tty: true
+    stdin_open: true
 
   cent2:
     build:
@@ -23,13 +26,16 @@ services:
     container_name: cent2
     hostname: cent2
     networks:
-      vws_net:
+      dmz_net:
         ipv4_address: 172.18.1.92
+      local_net:
+        ipv4_address: 10.18.1.92
     volumes:
       - ./SRC:/labdata
     privileged: true
     init: true
     tty: true
+    stdin_open: true
 
   cent3:
     build:
@@ -38,21 +44,29 @@ services:
     container_name: cent3
     hostname: cent3
     networks:
-      vws_net:
+      dmz_net:
         ipv4_address: 172.18.1.93
+      local_net:
+        ipv4_address: 10.18.1.93
     volumes:
       - ./SRC:/labdata
       - nfsdata:/nfs
     privileged: true
     init: true
     tty: true
+    stdin_open: true
 
 volumes:
   nfsdata:
 
 networks:
-  vws_net:
+  dmz_net:
     driver: bridge
     ipam:
       config:
         - subnet: 172.18.1.0/24
+  local_net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.18.1.0/24

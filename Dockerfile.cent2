@@ -1,0 +1,23 @@
+FROM rockylinux:8
+
+ENV container docker
+
+RUN dnf -y install epel-release && \
+    dnf makecache && \
+    curl -LsS https://downloads.mariadb.com/MariaDB/mariadb_repo_setup | bash && \
+    dnf -y install \
+      dnf-utils nano vim git net-tools tar binutils \
+      psmisc wget sysstat dialog \
+      boost-program-options stress \
+      procps-ng iproute util-linux tree which man less bash-completion \
+      openssh-server openssh-clients nfs-utils \
+      MariaDB-server MariaDB-client MariaDB-backup && \
+    dnf clean all
+
+VOLUME [ "/sys/fs/cgroup" ]
+STOPSIGNAL SIGRTMIN+3
+
+COPY SHELL/init.sh /init.sh
+RUN chmod +x /init.sh
+
+CMD ["/init.sh"]

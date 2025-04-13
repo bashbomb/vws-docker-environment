@@ -1,0 +1,21 @@
+FROM rockylinux:8
+
+ENV container docker
+
+RUN dnf -y install epel-release && \
+    dnf makecache && \
+    dnf -y install \
+      dnf-utils nano vim git net-tools tar binutils \
+      psmisc wget sysstat dialog \
+      stress \
+      procps-ng iproute util-linux tree which man less bash-completion \
+      openssh-server openssh-clients nfs-utils && \
+    dnf clean all
+
+VOLUME [ "/sys/fs/cgroup" ]
+STOPSIGNAL SIGRTMIN+3
+
+COPY SHELL/init.sh /init.sh
+RUN chmod +x /init.sh
+
+CMD ["/init.sh"]

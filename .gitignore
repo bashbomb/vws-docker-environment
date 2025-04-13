@@ -1,0 +1,12 @@
+# 시스템
+.DS_Store
+Thumbs.db
+
+# IDE/편집기
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# 테스트 DB (init.sh에서 clone)
+SRC/test_db/

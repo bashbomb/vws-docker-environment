@@ -1,0 +1,58 @@
+services:
+  cent1:
+    build:
+      context: .
+      dockerfile: Dockerfile.cent1
+    container_name: cent1
+    hostname: cent1
+    networks:
+      vws_net:
+        ipv4_address: 172.18.1.91
+    volumes:
+      - ./SRC:/labdata
+    ports:
+      - "80:80"
+    privileged: true
+    init: true
+    tty: true
+
+  cent2:
+    build:
+      context: .
+      dockerfile: Dockerfile.cent2
+    container_name: cent2
+    hostname: cent2
+    networks:
+      vws_net:
+        ipv4_address: 172.18.1.92
+    volumes:
+      - ./SRC:/labdata
+    privileged: true
+    init: true
+    tty: true
+
+  cent3:
+    build:
+      context: .
+      dockerfile: Dockerfile.cent3
+    container_name: cent3
+    hostname: cent3
+    networks:
+      vws_net:
+        ipv4_address: 172.18.1.93
+    volumes:
+      - ./SRC:/labdata
+      - nfsdata:/nfs
+    privileged: true
+    init: true
+    tty: true
+
+volumes:
+  nfsdata:
+
+networks:
+  vws_net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.18.1.0/24

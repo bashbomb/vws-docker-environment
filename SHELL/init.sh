@@ -35,6 +35,7 @@ mkdir -p /root/.ssh
 cp -rfp ${SSH}/* /root/.ssh/
 chmod 600 /root/.ssh/id_rsa || true
 chmod 644 /root/.ssh/authorized_keys || true
+chmod 644 /root/.ssh/config || true
 
 # Login 메시지
 cat << 'EOF' >> /root/.bashrc

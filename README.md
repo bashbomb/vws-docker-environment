@@ -148,6 +148,12 @@ ssh cent3
 
 ## 8. FAQ
 
+### Q. 컨테이너를 모두 종료하고 싶어요.
+
+```bash
+docker-compose down
+```
+
 ### Q. 컨테이너를 모두 초기화하고 싶어요.
 
 ```bash

@@ -26,7 +26,7 @@
 ## 3. 사전 준비 사항
 
 - Docker 설치 (https://www.docker.com/products/docker-desktop)
-- Docker Compose 설치 (v2.x 권장)
+  - Docker Compose 설치 (Docker Desktop을 설치하면 같이 설치됨)
 - Git 설치 (https://git-scm.com)
 
 ※ 각 소프트웨어의 설치 방법은 해당 링크의 공식 문서를 참고해 주세요.  

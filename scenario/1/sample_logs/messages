@@ -1,3 +1,0 @@
-Apr 20 00:00:01 localhost kernel: [    0.000000] Initializing cgroup subsys cpuset
-Apr 20 00:01:23 localhost systemd[1]: Started Daily Cleanup of Temporary Directories.
-Apr 20 00:02:45 localhost sshd[1234]: error: PAM: Authentication failure for illegal user admin from 192.168.0.100

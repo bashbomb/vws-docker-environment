@@ -1,23 +1,28 @@
-Host cent1
-HostKeyAlgorithms +ssh-dss
-HostName 172.18.1.91
-User root
-IdentityFile /root/.ssh/id_rsa
-Port 22
-ServerAliveInterval 30
+# 주의! 아래 3줄은 학습용 실습 시스템이기 때문에 등록한 설정입니다.
+Host *
+    StrictHostKeyChecking no
+    UserKnownHostsFile /dev/null
 
+Host cent1
+	HostKeyAlgorithms +ssh-dss
+	HostName 172.18.1.91
+	User root
+	IdentityFile /root/.ssh/id_rsa
+	Port 22
+	ServerAliveInterval 30
+	
 Host cent2
-HostKeyAlgorithms +ssh-dss
-HostName 172.18.1.92
-User root
-IdentityFile /root/.ssh/id_rsa
-Port 22
-ServerAliveInterval 30
+	HostKeyAlgorithms +ssh-dss
+	HostName 172.18.1.92
+	User root
+	IdentityFile /root/.ssh/id_rsa
+	Port 22
+	ServerAliveInterval 30
 
 Host cent3
-HostKeyAlgorithms +ssh-dss
-HostName 172.18.1.93
-User root
-IdentityFile /root/.ssh/id_rsa
-Port 22
-ServerAliveInterval 30
+	HostKeyAlgorithms +ssh-dss
+	HostName 172.18.1.93
+	User root
+	IdentityFile /root/.ssh/id_rsa
+	Port 22
+	ServerAliveInterval 30

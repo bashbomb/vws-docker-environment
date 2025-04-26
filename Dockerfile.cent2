@@ -14,6 +14,8 @@ RUN dnf -y install epel-release && \
       MariaDB-server MariaDB-client MariaDB-backup && \
     dnf clean all
 
+RUN ln -sf /usr/share/zoneinfo/Asia/Seoul /etc/localtime
+
 VOLUME [ "/sys/fs/cgroup" ]
 STOPSIGNAL SIGRTMIN+3
 

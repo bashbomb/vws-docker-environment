@@ -10,6 +10,7 @@ RUN dnf -y install epel-release && \
         procps-ng iproute util-linux tree which man less bash-completion \
         openssh-server openssh-clients nfs-utils cronie && \
     dnf clean all
+RUN ln -sf /usr/share/zoneinfo/Asia/Seoul /etc/localtime
 
 VOLUME [ "/sys/fs/cgroup" ]
 STOPSIGNAL SIGRTMIN+3

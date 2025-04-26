@@ -8,7 +8,7 @@ RUN dnf -y install epel-release && \
       dnf-utils nano vim git net-tools tar binutils \
       psmisc wget sysstat dialog \
       stress \
-      procps-ng iproute util-linux tree which man less bash-completion \
+      procps-ng iproute util-linux tree which man cronie less bash-completion \
       openssh-server openssh-clients nfs-utils && \
     dnf clean all
 

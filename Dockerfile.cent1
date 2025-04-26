@@ -8,7 +8,7 @@ RUN dnf -y install epel-release && \
         dnf-utils nano vim git net-tools tar binutils \
         psmisc wget sysstat dialog stress nginx \
         procps-ng iproute util-linux tree which man less bash-completion \
-        openssh-server openssh-clients nfs-utils && \
+        openssh-server openssh-clients nfs-utils cronie && \
     dnf clean all
 
 VOLUME [ "/sys/fs/cgroup" ]

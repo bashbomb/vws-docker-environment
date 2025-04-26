@@ -9,7 +9,7 @@ RUN dnf -y install epel-release && \
       dnf-utils nano vim git net-tools tar binutils \
       psmisc wget sysstat dialog \
       boost-program-options stress \
-      procps-ng iproute util-linux tree which man less bash-completion \
+      procps-ng iproute util-linux tree which man cronie less bash-completion \
       openssh-server openssh-clients nfs-utils \
       MariaDB-server MariaDB-client MariaDB-backup && \
     dnf clean all

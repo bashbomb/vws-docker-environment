@@ -138,7 +138,7 @@ ssh cent3
 
 ## 7. 참고 및 주의사항
 
-### ✅ Mac(M1/M2/M3)에서 `ps`, `netstat` 실행 시 "rosetta"로 표시됨
+### Mac(M1/M2/M3)에서 `ps`, `netstat` 실행 시 "rosetta"로 표시됨
 
 - Apple Silicon은 ARM 기반으로, x86 컨테이너는 **Rosetta 2**로 에뮬레이션됩니다.
 - 이 때문에 프로세스명이 실제 서비스가 아닌 `/run/rosetta/rosetta`로 표시될 수 있습니다.

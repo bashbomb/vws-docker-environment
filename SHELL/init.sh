@@ -22,27 +22,20 @@ EOF
 echo "fstab에 nfs 정보를 등록합니다."
 echo "10.18.1.93:/nfs   /mnt   nfs   nfsvers=3,tcp,nolock,noauto  0  0" >> /etc/fstab
 
-# .bashrc 환경 설정
-{
-  echo "HISTTIMEFORMAT='## %Y-%m-%d %T ## '"
-  echo "alias ls='ls --color=tty'"
-  echo "alias vi='vim'"
-  echo "alias ssh='ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null '"
-} >> /root/.bashrc
+# .bashrc 환경 설정 & Login 메시지 추가
+if ! grep -q "VWS_BASHRC_SET" /root/.bashrc; then
+  cat << EOF >> /root/.bashrc
 
-# SSH 설정
-mkdir -p /root/.ssh
-cp -rfp ${SSH}/* /root/.ssh/
-chmod 600 /root/.ssh/id_rsa || true
-chmod 644 /root/.ssh/authorized_keys || true
-chmod 644 /root/.ssh/config || true
-
-# Login 메시지
-cat << 'EOF' >> /root/.bashrc
+# VWS_BASHRC_SET
+# Virtual Web Service Company 환경 설정
+HISTTIMEFORMAT='## %Y-%m-%d %T ## '
+alias ls='ls --color=tty'
+alias vi='vim'
+alias ssh='ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null '
 
 echo ""
 echo "---------------------------------------------------------------------"
-echo "이 서버는 학습용 가상회사인 Virtual Web Service Company의 서버입니다."
+echo "이 서버는 학습용 가상회사 Virtual Web Service Company의 서버입니다."
 echo ""
 echo "실습의 용이성을 위해 selinux와 iptables를 off 했습니다."
 echo ""
@@ -51,6 +44,14 @@ echo "---------------------------------------------------------------------"
 echo ""
 
 EOF
+fi
+
+# SSH 설정
+mkdir -p /root/.ssh
+cp -rfp ${SSH}/* /root/.ssh/
+chmod 600 /root/.ssh/id_rsa || true
+chmod 644 /root/.ssh/authorized_keys || true
+chmod 644 /root/.ssh/config || true
 
 # 서버 역할별 처리
 case ${HOST} in

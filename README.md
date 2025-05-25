@@ -43,7 +43,12 @@ git clone https://github.com/bashbomb/vws-docker-environment.git
 ```
 
 ### 4-2. 컨테이너 이미지 빌드
+#### M칩셋을 사용하는 Mac 사용자는 아래 환경 변수 설정을 한 후에 컨테이너를 빌드하세요
+```bash
+export DOCKER_DEFAULT_PLATFORM=linux/amd64
+```
 
+#### 컨테이너 이미지 빌드
 ```bash
 # 저장소를 복사한 디렉터리로 이동 
 cd vws-docker-environment

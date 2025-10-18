@@ -18,6 +18,8 @@ services:
     init: true
     tty: true
     stdin_open: true
+    depends_on:
+      - cent3
 
   cent2:
     build:
@@ -36,6 +38,8 @@ services:
     init: true
     tty: true
     stdin_open: true
+    depends_on:
+      - cent3
 
   cent3:
     build:

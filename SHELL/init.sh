@@ -109,9 +109,13 @@ case ${HOST} in
     ;;
 
   *)
-    echo "⚠️ 알 수 없는 HOST: ${HOST}"
+    echo "알 수 없는 HOST: ${HOST}"
     ;;
 esac
+
+# 공통 rsyslog 설정
+echo "[${HOST}] rsyslogd 설정중..."
+\cp -fvp ${WORK}/rsyslog.conf /etc/rsyslog.conf || true
 
 # 공통 SSH 설정
 if [ ! -f /etc/ssh/ssh_host_rsa_key ]; then

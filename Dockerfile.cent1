@@ -5,7 +5,7 @@ ENV container docker
 RUN dnf -y install epel-release && \
     dnf makecache && \
     dnf -y install \
-        dnf-utils nano vim git net-tools tar binutils \
+        dnf-utils nano vim git net-tools tar binutils rsyslog \
         psmisc wget sysstat dialog stress nginx \
         procps-ng iproute util-linux tree which man less bash-completion \
         openssh-server openssh-clients nfs-utils cronie && \

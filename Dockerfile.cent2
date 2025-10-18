@@ -6,7 +6,7 @@ RUN dnf -y install epel-release && \
     dnf makecache && \
     curl -LsS https://downloads.mariadb.com/MariaDB/mariadb_repo_setup | bash && \
     dnf -y install \
-      dnf-utils nano vim git net-tools tar binutils \
+      dnf-utils nano vim git net-tools tar binutils rsyslog \
       psmisc wget sysstat dialog \
       boost-program-options stress \
       procps-ng iproute util-linux tree which man cronie less bash-completion \

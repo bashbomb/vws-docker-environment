@@ -4,7 +4,8 @@ ENV container docker
 
 RUN dnf -y install epel-release && \
     dnf makecache && \
-    curl -LsS https://downloads.mariadb.com/MariaDB/mariadb_repo_setup | bash && \
+    curl -LsS https://downloads.mariadb.com/MariaDB/mariadb_repo_setup | \
+      bash -s -- --mariadb-server-version="mariadb-11.7" && \
     dnf -y install \
       dnf-utils nano vim git net-tools tar binutils rsyslog \
       psmisc wget sysstat dialog \

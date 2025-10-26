@@ -59,6 +59,7 @@ services:
     init: true
     tty: true
     stdin_open: true
+    stop_grace_period: 10s
 
 volumes:
   nfsdata:

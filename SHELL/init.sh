@@ -106,6 +106,19 @@ case ${HOST} in
     exportfs -a
     /usr/sbin/rpc.nfsd
     /usr/sbin/rpc.mountd -F &
+
+    # 종료 시 NFS 데몬 정리
+    cleanup() {
+      echo "[cent3] NFS 종료 중..."
+      exportfs -u
+      killall rpc.mountd >/dev/null 2>&1 || true
+      killall rpc.nfsd >/dev/null 2>&1 || true
+      killall rpcbind >/dev/null 2>&1 || true
+      echo "[cent3] 종료 완료"
+      exit 0
+    }
+
+    trap cleanup SIGTERM SIGINT
     ;;
 
   *)
